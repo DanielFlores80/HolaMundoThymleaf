@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<!--Se agrega la sintaxis de thymeleaf para que reconozca las propiedades aplicadas en el archivo-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>INICIO</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Inicio</h1>
+        <!--Se agrega una etiqueta de tipo Thymeleaf para mostrar texto contenido en la variable "mensaje"-->
+        <p th:text="${mensaje}"></p>
+        <br>
+        <!--Se agrega una etiqueta de tipo Thymeleaf para mostrar texto contenido en la variable "saludo"-->
+        <p th:text="${saludo}"></p>
+        <br>
+         <!--Se valida si la lista de personas no viene nula y entra a crear la tabla y mostrar la información-->
+        <div th:if="${personasLista != null and !personasLista.empty}">
+            <table border="1">
+                <tr>
+                    <th>Nombre: </th>
+                    <th>Apellido: </th>
+                    <th>Email: </th>
+                    <th>Telefono: </th>
+                </tr>
+                 <!--Se genera un iterador para leer todas las personas de la lista e imprime el resultado dentro de la tabla-->
+                <tr th:each="persona : ${personasLista}">
+                    <td th:text="${persona.nombre}">Mostrar Nombre</td>
+                    <td th:text="${persona.apellido}">Mostrar Nombre</td>
+                    <td th:text="${persona.email}">Mostrar Nombre</td>
+                    <td th:text="${persona.telefono}">Mostrar Nombre</td>
+                </tr>
+            </table>
+        </div>
+          <!--Manda mensaje de error si la lista n¿viene nula o vacia-->
+        <div th:if="${personasLista == null or personasLista.empty}">
+            La lista de personas esta vacia
+        </div>
+        <br>
+    </body>
+</html>
